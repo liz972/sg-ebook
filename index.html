@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f7f5ef">
+  <meta name="description" content="SG 情報セキュリティマネジメント考试中日语言切换电子教材">
+  <title>SG 中日语言切换电子教材</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <button class="icon-btn menu-btn" id="menuBtn" aria-label="打开目录" title="目录">☰</button>
+    <div class="brand" id="brandBtn" role="button" tabindex="0">
+      <div class="brand-mark">SG</div>
+      <div class="brand-text">
+        <strong id="appTitle">中日语言切换电子教材</strong>
+        <span>情報セキュリティマネジメント</span>
+      </div>
+    </div>
+    <div class="lang-switch" role="group" aria-label="语言切换">
+      <button data-lang="zh">中文</button>
+      <button data-lang="ja">日本語</button>
+      <button data-lang="bi">中日</button>
+    </div>
+    <button class="icon-btn" id="fontBtn" aria-label="调整字号" title="字号">Aa</button>
+    <button class="icon-btn" id="themeBtn" aria-label="切换深色模式" title="深色模式">◐</button>
+  </header>
+
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="教材目录">
+      <div class="sidebar-head">
+        <label class="search-box">
+          <span>⌕</span>
+          <input id="searchInput" type="search" autocomplete="off" placeholder="搜索 / 検索 / Search">
+          <button id="clearSearch" aria-label="清除搜索">×</button>
+        </label>
+        <div class="toc-meta"><span id="resultCount"></span><button id="collapseAll">收起</button></div>
+      </div>
+      <nav id="toc" class="toc"></nav>
+    </aside>
+
+    <div class="overlay" id="overlay"></div>
+
+    <main class="reader" id="reader">
+      <section class="welcome" id="welcome">
+        <div class="eyebrow">SG • 情報セキュリティマネジメント</div>
+        <h1 id="welcomeTitle">中日语言切换电子教材</h1>
+        <p id="welcomeDesc">从左侧目录选择知识点。切换语言时，目录和正文会保持在同一知识点并同步切换。</p>
+        <div class="welcome-stats"><span><b>50</b> <i id="chapterStat">章节</i></span><span><b>911</b> <i id="termStat">知识点</i></span><span><b>3</b> <i id="modeStat">语言模式</i></span></div>
+        <button class="primary-btn" id="startBtn">开始阅读</button>
+      </section>
+      <article class="article hidden" id="article">
+        <nav class="crumbs" id="crumbs"></nav>
+        <header class="article-head">
+          <div class="chapter-label" id="chapterLabel"></div>
+          <h1 id="termTitle"></h1>
+          <div class="term-meta" id="termMeta"></div>
+        </header>
+        <div id="articleBody"></div>
+        <footer class="pager">
+          <button id="prevBtn">← <span id="prevLabel">上一项</span></button>
+          <button id="tocBtn">☰ <span id="tocLabel">目录</span></button>
+          <button id="nextBtn"><span id="nextLabel">下一项</span> →</button>
+        </footer>
+      </article>
+    </main>
+  </div>
+
+  <script src="book-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
