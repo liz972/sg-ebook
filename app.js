@@ -6,7 +6,7 @@
   const chapterById = new Map(chapters.map(c => [c.id, c]));
   const chapterEntries = new Map(chapters.map(c => [c.id, entries.filter(e => e.chapterId === c.id)]));
   const $ = id => document.getElementById(id);
-  const els = {toc:$('toc'),sidebar:$('sidebar'),overlay:$('overlay'),search:$('searchInput'),clear:$('clearSearch'),count:$('resultCount'),collapse:$('collapseAll'),welcome:$('welcome'),article:$('article'),welcomeTitle:$('welcomeTitle'),welcomeDesc:$('welcomeDesc'),appTitle:$('appTitle'),chapterStat:$('chapterStat'),termStat:$('termStat'),modeStat:$('modeStat'),start:$('startBtn'),crumbs:$('crumbs'),chapterLabel:$('chapterLabel'),termTitle:$('termTitle'),termMeta:$('termMeta'),body:$('articleBody'),prev:$('prevBtn'),next:$('nextBtn'),tocBtn:$('tocBtn'),prevLabel:$('prevLabel'),nextLabel:$('nextLabel'),tocLabel:$('tocLabel'),menu:$('menuBtn'),theme:$('themeBtn'),font:$('fontBtn'),brand:$('brandBtn')};
+  const els = {toc:$('toc'),sidebar:$('sidebar'),overlay:$('overlay'),search:$('searchInput'),clear:$('clearSearch'),count:$('resultCount'),collapse:$('collapseAll'),welcome:$('welcome'),article:$('article'),welcomeTitle:$('welcomeTitle'),welcomeDesc:$('welcomeDesc'),appTitle:$('appTitle'),chapterStat:$('chapterStat'),termStat:$('termStat'),chapterCount:$('chapterCount'),termCount:$('termCount'),modeStat:$('modeStat'),start:$('startBtn'),crumbs:$('crumbs'),chapterLabel:$('chapterLabel'),termTitle:$('termTitle'),termMeta:$('termMeta'),body:$('articleBody'),prev:$('prevBtn'),next:$('nextBtn'),tocBtn:$('tocBtn'),prevLabel:$('prevLabel'),nextLabel:$('nextLabel'),tocLabel:$('tocLabel'),menu:$('menuBtn'),theme:$('themeBtn'),font:$('fontBtn'),brand:$('brandBtn')};
   const ui = {
     zh:{title:'中日语言切换电子教材',welcome:'中日语言切换电子教材',desc:'点击目录的大分类，可连续阅读该分类下的全部专业用语；点击具体用语，会直接定位到本章中的对应位置。',chapter:'章节',term:'知识点',mode:'语言模式',start:'开始阅读',collapse:'收起',toc:'目录',prev:'上一章',next:'下一章',ja:'日文原文',zh:'中文解释',search:'搜索 / 日文 / English',terms:'个专业用语'},
     ja:{title:'日中言語切替電子教材',welcome:'日中言語切替電子教材',desc:'目次の大分類を選ぶと、その章の全用語を続けて読めます。個別の用語を選ぶと、その章内の該当位置へ直接移動します。',chapter:'章',term:'用語',mode:'表示モード',start:'読み始める',collapse:'閉じる',toc:'目次',prev:'前の章',next:'次の章',ja:'日本語解説',zh:'中国語訳',search:'検索 / 中文 / English',terms:'用語'},
@@ -36,7 +36,7 @@
   function applyUi(){
     document.documentElement.lang = lang === 'ja' ? 'ja' : 'zh-CN';
     const t = ui[lang]; document.title=`SG | ${t.title}`; els.appTitle.textContent=t.title; els.welcomeTitle.textContent=t.welcome; els.welcomeDesc.textContent=t.desc; els.chapterStat.textContent=t.chapter; els.termStat.textContent=t.term; els.modeStat.textContent=t.mode; els.start.textContent=t.start; els.collapse.textContent=t.collapse; els.prevLabel.textContent=t.prev; els.nextLabel.textContent=t.next; els.tocLabel.textContent=t.toc; els.search.placeholder=t.search;
-    document.querySelectorAll('[data-lang]').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+    els.chapterCount.textContent=chapters.length;els.termCount.textContent=entries.length;document.querySelectorAll('[data-lang]').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
   }
   function setLang(v){lang=v;localStorage.setItem('sg-lang',v);applyUi();renderToc();if(currentChapterId){renderChapter(currentChapterId,false);if(currentId)requestAnimationFrame(()=>scrollToEntry(currentId,false));}}
 
